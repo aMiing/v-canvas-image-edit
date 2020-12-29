@@ -1,14 +1,6 @@
 <template>
   <div class="hello">
-    <div class="left" v-show="leftShow"></div>
-    <div class="middle">
-      <div class="foldButton b_left" @click="foldBox('left')">></div>
-      <div class="foldButton b_right" @click="foldBox('right')">></div>
-      <Vedit :container="container" :height="1000" :width="1820"></Vedit>
-      <!-- <Test/> -->
-      <!-- <Draw></Draw> -->
-    </div>
-    <div class="right" v-show="rightShow"></div>
+      <vedit :container="container" :height="1000" :width="1820"></vedit>
   </div>
 </template>
 

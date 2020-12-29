@@ -12,7 +12,11 @@
               @change="changeTool(item.name)"
               :checked="item.name == currentTool"
             />
-            <label :for="'tools_' + item.name">{{ item.display }}</label>
+            <label
+              :for="'tools_' + item.name"
+              :title="item.display"
+              :class="item.name"
+            ></label>
           </span>
 
           <span v-for="item in toolBar.shade" :key="item.name">
@@ -23,44 +27,48 @@
               @change="changeTool(item.name)"
               :checked="item.name == currentTool"
             />
-            <label :for="'tools_' + item.name" :style="'color:red;background: url('+item.icon+')'">{{ item.display }}</label>
+            <label
+              :for="'tools_' + item.name"
+              :title="item.display"
+              :class="item.name"
+            ></label>
           </span>
-
         </div>
       </fieldset>
       <fieldset style="float: left; margin-left: 20px">
         <legend>操作</legend>
         <div class="toolsOptions">
-            <label 
-                v-for="item in toolBar.opration"
-                :key="item.name"
-                :id="'tools_' + item.name"
-                @click="oprationClickHandle(item.name)">
-                {{ item.display }}
-            </label>
-            <span
+          <label
+            v-for="item in toolBar.opration"
+            :key="item.name"
+            :id="'tools_' + item.name"
+            @click="oprationClickHandle(item.name)"
+          >
+            {{ item.display }}
+          </label>
+          <span
             >边框色:
             <el-color-picker
-                v-model="borderColor"
-                size="mini"
-                @change="borderColorChange"
+              v-model="borderColor"
+              size="mini"
+              @change="borderColorChange"
             ></el-color-picker>
-            </span>
-            <span
+          </span>
+          <span
             >文字颜色:
             <el-color-picker
-                v-model="textColor"
-                size="mini"
-                @change="textColorChange"
+              v-model="textColor"
+              size="mini"
+              @change="textColorChange"
             ></el-color-picker>
-            </span>
+          </span>
         </div>
       </fieldset>
 
       <fieldset style="float: left; margin-left: 20px">
         <legend>文件操作</legend>
         <div class="toolsOptions">
-            <label id="tools_uploadImg" @click="uploadImg">上传图片</label>
+          <label id="tools_uploadImg" @click="uploadImg">上传图片</label>
         </div>
       </fieldset>
 
@@ -163,56 +171,56 @@ const toolbar = {
     {
       name: "pencil",
       display: "画笔",
-      icon: 'images/pencil.svg',
+      icon: "images/pencil.svg",
     },
     {
       name: "eraser",
       display: "橡皮擦",
-      icon: 'images/eraser.svg',
+      icon: "images/eraser.svg",
     },
     {
       name: "trash",
       display: "清空",
-      icon: 'images/clear.svg',
+      icon: "images/clear.svg",
     },
   ],
   opration: [
     {
       name: "save",
       display: "save",
-      icon: 'images/save.svg',
+      icon: "images/save.svg",
     },
     {
       name: "undo",
       display: "undo",
-      icon: 'images/undo.svg',
+      icon: "images/undo.svg",
     },
     {
       name: "redo",
       display: "redo",
-      icon: 'images/redo.svg',
+      icon: "images/redo.svg",
     },
   ],
   shade: [
     {
       name: "line",
       display: "直线",
-      icon: 'images/line.svg',
+      icon: "images/line.svg",
     },
     {
       name: "circle",
       display: "圆形",
-      icon: 'images/circle.svg',
+      icon: "images/circle.svg",
     },
     {
       name: "rect",
       display: "矩形",
-      icon: 'images/rect.svg',
+      icon: "images/rect.svg",
     },
     {
       name: "text",
       display: "文字",
-      icon: 'images/text.svg',
+      icon: "images/text.svg",
     },
   ],
 };
@@ -220,21 +228,21 @@ const toolbar = {
 // Object.freeze(toolbar)
 let width = window.innerWidth;
 let height = window.innerHeight;
-window.onresize = function(){
-     width = window.innerWidth;
-    height = window.innerHeight;
-}
+window.onresize = function () {
+  width = window.innerWidth;
+  height = window.innerHeight;
+};
 export default {
   name: "edit",
   props: {
-      width: {
-          type: Number,
-          default: 0
-      },
-      height: {
-          type: Number,
-          default: 0
-      },
+    width: {
+      type: Number,
+      default: 0,
+    },
+    height: {
+      type: Number,
+      default: 0,
+    },
   },
   data() {
     return {
@@ -720,62 +728,117 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-.toolBar{
-    display: flex;
-    justify-content: start;
-    vertical-align:middle;
-}
-input[type="radio"]{
-    width: 0px;
-    height: 0px;
-    margin:0;
-}
-.toolsOptions{
-        display: flex;
-    justify-content: space-between;
-    vertical-align:middle;
-    line-height: 1em;
-}
-.toolsOptions label{
-    border: 1px solid #ccc;
-    font-weight: normal;
-    color: #ffffff;
-    border-radius: 5px;
-        padding: .3em 1em;
-        line-height: 1em;
-        cursor: pointer;
-        margin-right: .4em;
-}
-canvas {
-  border: 2px dashed gray;
-}
+// <style lang="scss" scoped>
+// .toolBar {
+//   display: flex;
+//   justify-content: center;
+//   vertical-align: middle;
+// }
+// input[type='radio'] {
+//   width: 0px;
+//   height: 0px;
+//   margin: 0;
+// }
+// input:checked {
+//   ~ label {
+//     background-color: #66b1ff;
+//     border-color: #66b1ff;
+//     color: #fff;
+//   }
+// }
+// .toolsOptions {
+//   display: flex;
+//   justify-content: space-between;
+//   height: 28px;
+//   line-height: 28px;
+//   span {
+//     display: inline-flex;
+//     line-height: 28px;
+//     margin: 0 0.4em;
+//   }
+// }
+// .toolsOptions label {
+//   border: 1px solid #6bf;
+//   font-weight: normal;
+//   color: #ffffff;
+//   border-radius: 5px;
+//   // padding: .3em 1em;
+//   line-height: 1.6em;
+//   cursor: pointer;
+//   margin-right: 0.4em;
+//   color: #409eff;
+//   background-color: #ecf5ff;
+//   border-color: #b3d8ff;
+//   height: 28px;
+//   width: 36px;
+//   background-position: 50% 50%;
+//   background-repeat: no-repeat;
+//   background-size: 80% 80%;
+//   &.line {
+//     background-image: url('images/line.svg');
+//   }
+//   &.pencil {
+//     background-image: url('images/pencil.svg');
+//   }
 
-.container_pencil {
-  cursor: url(images/PencilToolCursor.gif), pointer;
-}
+//   &.eraser {
+//     background-image: url('images/eraser.svg');
+//   }
+//   &.circle {
+//     background-image: url('images/circle.svg');
+//   }
+//   &.rect {
+//     background-image: url('images/rect.svg');
+//   }
+//   &.undo {
+//     background-image: url('images/undo.svg');
+//   }
+//   &.redo {
+//     background-image: url('images/redo.svg');
+//   }
+//   &.save {
+//     background-image: url('images/save.svg');
+//   }
+//   &.clear {
+//     background-image: url('images/clear.svg');
+//   }
+//   &.text {
+//     background-image: url('images/text.svg');
+//   }
+//   &.uploadImg {
+//     background-image: url('images/uploadImg.svg');
+//   }
+// }
+// canvas {
+//   border: 2px dashed gray;
+//   // margin: 0 202px;
+// }
 
-.container_eraser {
-  cursor: url(images/test.png), pointer;
-}
+// .container_pencil {
+//   cursor: url(images/PencilToolCursor.gif), pointer;
+// }
 
-.container_font {
-  cursor: crosshair;
-}
-.speed {
-  top: 15px;
-}
+// .container_eraser {
+//   cursor: url(images/test.png), pointer;
+// }
 
-.ui-selectmenu-text {
-  font-size: 14px;
-}
-.anyLine {
-  position: absolute;
-  top: auto;
-  left: auto;
-}
-.fontTip {
-  background: transparent;
-  position: absolute;
-}
-</style>
+// .container_font {
+//   cursor: crosshair;
+// }
+// .speed {
+//   top: 15px;
+// }
+
+// .ui-selectmenu-text {
+//   font-size: 14px;
+// }
+// .anyLine {
+//   position: absolute;
+//   top: auto;
+//   left: auto;
+// }
+// .fontTip {
+//   background: transparent;
+//   position: absolute;
+// }
+// </style>
